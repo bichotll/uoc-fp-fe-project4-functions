@@ -42,12 +42,12 @@ exports.sendNotificationsOnDocumentCreate = functions.firestore.document('Jugado
 
 exports.sendNotificationsOnDocumentUpdate = functions.firestore.document('Jugadores/{messageId}').onUpdate(
     async (snapshot) => {
-        return sendNotification(`jugador ${snapshot.after.data().nombre} actualizado`);
+        return sendNotification(`jugador ${snapshot.before.data().nombre} actualizado`);
     }
 );
 
 exports.sendNotificationsOnDocumentUpdate = functions.firestore.document('Jugadores/{messageId}').onDelete(
     async (snapshot) => {
-        return sendNotification(`jugador ${snapshot.data().nombre} actualizado`);
+        return sendNotification(`jugador ${snapshot.data().nombre} borrado`);
     }
 );
